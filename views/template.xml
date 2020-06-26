@@ -2,17 +2,17 @@
 
 <odoo>
 	<data>
-	
+
 	<template id="assets_frontend" inherit_id="website.assets_frontend" name="Add Product">
 	  <xpath expr="." position="inside">
-	      <link rel="stylesheet" href="/bi_website_add_product/static/src/css/custom.css"/>
+	      <link rel="stylesheet" href="/bi_website_add_product/static/src/css/customadd.css"/>
 	  </xpath>
 	</template>
-	
-	
-	<template id="add_website_product_item" inherit_id="website_sale.products_item" customize_show="True" name="Dynamic Add To Cart"> 
-		<xpath expr="//form[@action='/shop/cart/update']" method="post" position="replace"> 
-			 <form action="/shop/cart/update/product" method="get" style="display: inline-block;"> 
+
+
+	<template id="add_website_product_item" inherit_id="website_sale.products_item" customize_show="True" name="Dynamic Add To Cart">
+		<xpath expr="//form[@action='/shop/cart/update']" method="post" position="replace">
+			 <form action="/shop/cart/update/product" method="get" style="display:compact;">
 				  <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
 				  <div itemscope="itemscope" itemtype="http://schema.org/Product">
 					  <div class="ribbon-wrapper">
@@ -31,7 +31,7 @@
                             <t t-set="action" t-value="'product.product_template_action'" />
                         </t>
                     </div>
-                </t>  
+                </t>
 					  <section>
 					      <h5>
                             <strong>
@@ -44,7 +44,7 @@
 									<t t-set="products" t-value="website.add_website_product(product.product_variant_ids[0].id)"/>
 								    <a class="btn btn-default btn-xs fa fa-shopping-cart a-submit" t-if="not products" t-att-row="product.product_variant_ids[0].id"/>
 				    			</div>
-								
+
 						        <b>
 						              <t t-if="(compute_currency(product.lst_price) - product.website_price ) &gt; 0.01  and website.get_current_pricelist().discount_policy=='without_discount'">
                                 <del class="text-danger mr8" style="white-space: nowrap;" t-esc="compute_currency(product.website_public_price)" t-options="{'widget': 'monetary', 'display_currency': website.get_current_pricelist().currency_id, 'from_currency': website.currency_id}" />
@@ -60,6 +60,6 @@
 			 </form>
 		  </xpath>
 	</template>
-	
+
 	</data>
 </odoo>
